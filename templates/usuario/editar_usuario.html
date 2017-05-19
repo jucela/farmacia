@@ -1,0 +1,150 @@
+{% extends  'base/base.html'%}
+{% load staticfiles %}
+{#{% block rutas %}#}
+{#    <script >#}
+{#		$(document).ready(function() {#}
+{#        document.getElementById("id_id").disabled = true;#}
+{##}
+{#    } );#}
+{#	</script>#}
+{#{% endblock %}#}
+{% block rutas %}
+    <script type="text/javascript" src="{% static 'assets/js/plugins/forms/styling/uniform.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/forms/styling/switchery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/forms/styling/switch.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/pages/form_checkboxes_radios.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'assets/js/plugins/pickers/daterangepicker.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/anytime.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/picker.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/picker.date.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/picker.time.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/legacy.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/pages/picker_date.js' %}"></script>
+{% endblock %}
+{% block content-header %}
+    <div class="page-header page-header-default" xmlns="http://www.w3.org/1999/html">
+					<div class="page-header-content">
+						<div class="page-title">
+							<h4><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-arrow-left52 position-left"></i> </a><span class="text-semibold">Seguridad y Permisos </span> / Actualizar de Usuarios</h4>
+						</div>
+
+					</div>
+
+
+				</div>
+{% endblock %}
+{% block content %}
+					<div class="panel panel-flat">
+
+
+						<div class="panel-body">
+							<!--<p class="content-group">Besides navigation, navbar component supports custom content such as: dropdown menus with custom content, full width dropdowns, language selects, forms, tabs, multi level menus, date pickers etc. Everything is adapted to use in different navbar color schemes and sizes. Examples below demonstrate some of these components, other examples related to <code>mega menu</code> can be found <a href="navigation_horizontal_mega.html">on this page</a>.</p>-->
+							<!-- Basic datatable -->
+
+
+
+                     <!-- Advanced legend -->
+                            {% if form.errors %}
+                                   <div class="alert alert-danger">{{ form.errors }}</div>
+                                {% endif %}
+							<form class="form-horizontal" method="post">
+								{% csrf_token %}
+                                <div class="panel panel-flat">
+									<div class="panel-body">
+										<fieldset>
+											<legend class="text-semibold">
+												<i class="icon-user"></i>
+												ACTUALIZAR USUARIO
+												<a class="control-arrow" data-toggle="collapse" data-target="#demo1">
+													<i class="icon-circle-down2"></i>
+												</a>
+											</legend>
+
+											<div class="collapse in" id="demo1">
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">id:</label>
+													<div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+														       {{ form.id}}
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+												</div>
+												<div class="form-group">
+													<label class="col-lg-2 control-label">Usuario:</label>
+													<div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+														       {{ form.username}}
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+												</div>
+
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Nombres:</label>
+													<div class="col-lg-10">
+														{{ form.first_name}}
+                                                    </div>
+												</div>
+
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Apellidos:</label>
+													<div class="col-lg-10">
+														{{ form.last_name}}
+													</div>
+												</div>
+
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Correo:</label>
+													<div class="col-lg-10">
+					                                    {{ form.email }}
+				                                    </div>
+					                			</div>
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Acceso:</label>
+													<div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+														        <label class="checkbox-inline">
+											                     {{ form.is_staff }}
+											                     Activo
+										                        </label>
+                                                            </div>
+                                                            <div class="col-md-2">
+														       <label class="col-lg-3 control-label">Estado:</label>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <label class="checkbox-inline">
+											                    {{ form.is_active }}
+											                      Activo
+                                                                </label>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+											</div>
+										</fieldset>
+
+
+										<div class="text-right">
+											<button type="submit" class="btn btn-primary">Ingresar<i class="icon-arrow-right14 position-right"></i></button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!-- /a legend -->
+
+
+						</div>
+					</div>
+                    {% endblock %}

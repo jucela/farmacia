@@ -1,0 +1,162 @@
+{% extends  'base/base.html'%}
+{% load staticfiles %}
+{% block rutas %}
+    <script type="text/javascript" src="{% static 'assets/js/plugins/pickers/daterangepicker.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/anytime.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/picker.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/picker.date.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/picker.time.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/legacy.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/pages/picker_date.js' %}"></script>
+{% endblock %}
+{% block content-header %}
+				<div class="page-header page-header-default">
+					<div class="page-header-content">
+						<div class="page-title">
+							<h4><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-arrow-left52 position-left"></i> </a><span class="text-semibold">Seguridad y Permisos </span> / Registro de Empleados</h4>
+						</div>
+
+					</div>
+
+
+				</div>
+{% endblock %}
+{% block content %}
+					<div class="panel panel-flat">
+
+
+						<div class="panel-body">
+							<!--<p class="content-group">Besides navigation, navbar component supports custom content such as: dropdown menus with custom content, full width dropdowns, language selects, forms, tabs, multi level menus, date pickers etc. Everything is adapted to use in different navbar color schemes and sizes. Examples below demonstrate some of these components, other examples related to <code>mega menu</code> can be found <a href="navigation_horizontal_mega.html">on this page</a>.</p>-->
+							<!-- Basic datatable -->
+
+
+
+                     <!-- Advanced legend -->
+							<form class="form-horizontal" action="#">
+                                {% csrf_token %}
+								<div class="panel panel-flat">
+									<div class="panel-body">
+										<fieldset>
+											<legend class="text-semibold">
+												<i class="icon-user-tie"></i>
+												REGISTRAR EMPLEADO
+												<a class="control-arrow" data-toggle="collapse" data-target="#demo1">
+													<i class="icon-circle-down2"></i>
+												</a>
+											</legend>
+
+											<div class="collapse in" id="demo1">
+												<div class="form-group">
+													<label class="col-lg-2 control-label">DNI:</label>
+													<div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-md-5">
+														        <input type="text" class="form-control" placeholder="Documento de Identidad">
+                                                            </div>
+                                                            <div class="col-md-3">
+														       <label class="col-lg-3 control-label">Fecha_Nacimiento:</label>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="icon-calendar3"></i></span>
+											                        <input type="text" class="form-control" id="anytime-month-numeric" value="04/06/2017">
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+												</div>
+
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Nombres y Apellidos:</label>
+													<div class="col-lg-10">
+														<div class="row">
+														<div class="col-md-6">
+															<input type="text" placeholder="Nombres" class="form-control">
+														</div>
+
+														<div class="col-md-6">
+															<input type="text" placeholder="Apellidos" class="form-control">
+														</div>
+													    </div>
+													</div>
+												</div>
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Genero:</label>
+													<div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+
+														      <label class="radio-inline">
+															    <input type="radio" name="gender2" class="styled" checked="checked">
+															     Masculino
+														      </label>
+                                                            </div>
+                                                            <div class="col-md-3">
+														      <label class="radio-inline">
+                                                                  <input type="radio" name="gender2" class="styled">
+                                                                  Femenino
+														       </label>
+                                                            </div>
+                                                            <div class="cold-md-3">
+                                                            <label class="col-lg-2 control-label">Telefono:</label>
+                                                            </div>
+													        <div class="col-lg-5">
+														    <input type="text" class="form-control" placeholder="Telefono">
+													        </div>
+
+                                                        </div>
+													</div>
+					                			</div>
+
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Direccion:</label>
+													<div class="col-lg-10">
+														<input type="text" class="form-control" placeholder="Direccion">
+													</div>
+												</div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">Correo:</label>
+													<div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+														         <input type="text" class="form-control" placeholder="Correo Electronico">
+                                                            </div>
+                                                            <div lass="col-md-6">
+                                                              <label class="col-lg-2 control-label">Cargo:</label>
+                                                            </div>
+                                                            <div lass="col-md-6">
+                                                              <select data-placeholder="--Selecciones Cargo--" class="select">
+                                                            <option></option>
+					                                        <option value="1">Administrador</option>
+					                                        <option value="2">Vendedor</option>
+					                                        <option value="3">Supervisor</option>
+					                                        <option value="4">Invitado</option>
+					                                    </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+												</div>
+
+
+											</div>
+										</fieldset>
+
+
+										<div class="text-right">
+											<button type="submit" class="btn btn-primary">Ingresar<i class="icon-arrow-right14 position-right"></i></button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!-- /a legend -->
+
+
+
+
+
+
+						</div>
+					</div>
+                    {% endblock %}

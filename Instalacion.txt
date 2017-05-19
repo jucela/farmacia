@@ -1,0 +1,434 @@
+******INSTALAR  DJANGO-GLOBAL****
+1. Descargar e instalar python
+
+2. Abrir CMD e intalar  Django por linea de comandos:
+   pip install Django==10.1
+
+3.Crear una carpeta donde se almacenara los proyectos e ingresar a la    carpeta   por CMD y ejecutar el siguiente comando: 
+
+   django-admin startproject prueba
+   django-admin.py startproject prueba
+
+4.ingresar ala carpeta que contiene el archivo manage.py y ejecutar   el   siguiente comando:
+  python manage.py runserver
+  el cual ejecutara el servicio web, comprobar con localhost:8000
+
+5.luego ejecutar el siguiente comando:
+   python manage.py migrate
+   el cuallevantara los dema servicios;sqlite etc.
+
+6. crear superusuario para manager el administrador de django:
+   python manage.py createsuperuser
+   username(lave blank to use 'juxe'):admin
+   email adress:juliolavado5@gmail.com
+   password:       julio2017
+   password(again):julio2017
+   superuser created successfully
+
+7. levantar el servidor web con 
+   python manage.py runserver 
+   uego ingresar localhost:8000/admin e ingresar las credenciales        creadas    en el superusuario
+
+
+
+******INSTALAR  DJANGO-VIRTUAL****
+1. Descargar e instalar python
+
+2.D:\Desarrollo_SW\virtual_django>pip install virtualenv
+
+3.Entrar a la carpeta virtual_django y ejecutar el codigo 
+  'virtualenv virtual_juce'
+  D:\Desarrollo_SW\virtual_django>virtualenv virtual_juce
+
+4.Ejecutar el virtual con :
+  D:\Desarrollo_SW\virtual_django>virtuale_django51>Scripts>activate
+
+5.<VIRTUAL> D:\Desarrollo_SW\proyectos_django_virtual>
+
+6. Abrir CMD e intalar  Django por linea de comandos:
+   >pip install Django==1.10
+   verificar instalacion
+   >python
+   >import django
+   >django.VERSION
+  nota: pip freeze-->ver  bibliotecas instyalas en django
+
+7. Crear una carpeta donde se almacenara los proyectos e ingresar a la             carpeta   por CMD y ejecutar el siguiente comando: 
+
+   >django-admin startproject proyecto_biblioteca
+     ó
+   >django-admin.py startproject proyecto_biblioteca
+
+8. ingresar ala carpeta que contiene el archivo manage.py y ejecutar   el           siguiente comando:
+   >python manage.py runserver:
+
+    el cual ejecutara el servicio web, comprobar con localhost:8000
+
+9. luego ejecutar el siguiente comando:
+   >python manage.py migrate
+   el cuallevantara los dema servicios;sqlite etc.
+
+10.crear superusuario para manager el administrador de django:
+   >python manage.py createsuperuser
+   >username(lave blank to use 'juxe'):admin
+   -email adress:juliolavado5@gmail.com
+   -password:       julio2017
+   -password(again):julio2017
+    superuser created successfully
+
+11. levantar el servidor web con 
+   -python manage.py runserver 
+    Luego ingresar localhost:8000/admin e ingresar las credenciales                  creadas    en el superusuario
+
+*****VISTAS BASADA EN  CLASES**********************
+-----PRIMERA  FORMA-----
+1. Instalar  en la carpeta del proyecto ejecutando el siguiente comando:
+   -pip install unipath 
+2. Crear la carpeta  'proyecto/templates ' donde  se  alojaran  todas las vista    '.html'       luego en la  carpeta 'proyecto2/inicio/settings.py' ingresar
+   -from unipath import Path
+   -RUTA_PROYECTO= pATH(__file__).ANCESTOR(2)
+
+   -TEMPLATE_DIRS=(
+    RUTA_PROYECTO.child('templates')
+     )
+
+3. Luego en el achivo proyecto/proyecto/urls.py  escribir lo  siguiente:
+    url(r'^',include('apps.inicio.urls')),
+4. crear  en la proyecto/apps/inicio/urls.py y escribir lo siguiente:
+    from django.conf.urls import url
+    urlpatterns = ['',]
+
+*****CREAR MODULO O APLICACION-PRIMERA FORMA****
+ 2. para crear el modulo o aplicacion 'pagina' Ingresar   el sigiente                comando en la carpeta 'src'
+    python manage.py startapp pagina ó  django-admin startapp pagina(si es que       se hace fuera de src o en otra  carpeta)
+    
+    *proyecto1/src/proyecto1/setting.py
+     'DIRS': [os.path.join(BASE_DIR,'templates')],
+
+    *proyecto1/src/proyecto1/urls.py
+      from pagina.views import inicio
+      url(r'^$',inicio)
+
+    *proyecto1/src/pagina/views.py
+      def inicio(request):
+      return  render(request,"inicio.html",{});
+
+    luego  crear la carpeta 'templates' dentro de 'src' y crear el archivo         inicio.html
+
+
+*****4 CREAR MODULO,APLICACIONES Y ESTRUCTURA DEL PROYECTO
+
+ 4.1 Crear la carpeta 'apps' en la raiz del /bodega
+    1.1 primera forma crear por ide 'python package' quedara /bodega/appsapp 
+    1.2 segunda forma crear carpeta en la raiz del proyecto luego agregar el         archivo python   '__init__.py'
+
+ 4.2 crear el modulo o aplicacion '/bodega/apps/' Ingresar   el      siguiente           
+    -python manage.py startapp cliente ó django-admin startapp      cliente
+
+ 4.3 Crear en el archivo bodega/bodega/settings.py para que el      proyecto      la  reconosca
+    -INSTALLED_APPS = ['apps.cliente']
+
+
+
+*********5. Modelos y Migraciones*********
+5.1. crear las atributos en bodega/apps/cliente/models.py
+    
+    -class Cliente(models.Model):
+    -idcliente=models.CharField(max_length=10,primary_key=True)
+    -nombres=models.CharField(max_length=50)
+
+5.2.  Al ejecutar el comando se creara un archivo                 bodega/apps/cliente/migrations/0001_initial.py en cual creara los atributos      automaticamente
+    >python manage.py makemigrations
+
+5.3.  al jecutar el comando se crearan la tabla en la base de datos
+    >python manage.py migrate
+5.4. para poder visualizar los modulos en el administrador de django    agregar en el archivo admin.py de  cada modulo 
+
+   from django.contrib import admin
+   from apps.cliente.models import Cliente
+   admin.site.register(Cliente)
+
+# Register your models here.
+admin.site.register(Cliente)
+
+Nota2: en la carpeta bodega/bodega/settings.py agregar los modulos        creados       INSTALLED_APPS=['apps.cliente',]
+Nota1: si desea editar el modelo en 'models.py' editar tambien el        cambio en '0001.initial.py luego ejecutar los pasos 2 y 3        anteriores.
+
+********6.RELACIONES***************************************
+
+********7. DJANGO SHELL QUERYSETS**************************
+
+********8.CONFIGURAR URLS Y PRIMERA VIEW*******************
+********PRIMERA FORMA**************************************
+8.1 En el archivo bodega/apps/cliente/views.py  agregar 
+    from django.shortcuts import render
+    from django.http import HttpResponse
+
+    -def mostrar_index(request):
+     return HttpResponse("Hola mundo")----->solo mostrar 'Hola mundo'
+    -def mostrar_index(request):
+    return render(request,"cliente/registro_usuario.html")--->llama el fomulario en la carpeta de templates    
+
+8.2 Crear el archiv 'urls.py'  apps/cliente/urls.py , luego ingresar
+    from django.conf.urls import url,include
+    from apps.cliente.views import mostrar_index--->hereda la funcion 
+    
+    urlpatterns =[url(r'^$',mostrar_index),]
+
+8.3 Crear  en la bodega/bodega/urls.py y agregar escribir lo             siguiente:
+    from django.conf.urls import url,include
+    url(r'^admin/', admin.site.urls),
+    url(r'^',include ('apps.cliente.urls')),
+
+********SEGUNDA FORMA***************************************
+8.4  agregar la carpeta 'templates' que contiene los archivos html  bodega/bodega/setting.py
+     'DIRS': [os.path.join(BASE_DIR,'templates')],
+
+8.5 En el archivo bodega/apps/cliente/views.py  agregar 
+    from django.shortcuts import render
+    def mostrar_index(request):
+    return render(request,"cliente/registro_usuario.html")
+
+8.6 Crear  en la bodega/bodega/urls.py y agregar escribir lo siguiente:
+    from django.conf.urls import url,include
+    from apps.cliente.views import mostrar_index
+
+    url(r'^admin/', admin.site.urls),
+    url(r'^',mostrar_index),
+
+    *proyecto1/src/proyecto1/urls.py
+      from pagina.views import inicio
+      url(r'^$',inicio)
+
+    *proyecto1/src/pagina/views.py
+      def inicio(request):
+      return  render(request,"inicio.html",{})
+
+Nota:  r'^$' ó r'^' dirigen por defecto, se pueden agregarmas rutas        con lo siguiente r'^index/$' ó r'^index'
+
+
+********9. SISTEMA DE PLANTILLAS***************************
+9.1. crear la carpeta  'templates' la cual almacenara  todas las  vistas  en  HTML bodega/templates
+9.2. Agregar el siguiente codigo en el archivo     'bodega/bodega/settryns.py'
+   TEMPLATES = [
+    {'DIRS': [os.path.join(BASE_DIR,'templates')],
+     'APP_DIRS':True,},]
+*********10. Herencia de Plantillas**************************
+10.1Crear la carpeta 'base'         bodega/bodega/templates/base
+10.2.Crear el archivo 'base.html' bodega/bodega/templates/base/base.html
+10.3.crear una carpeta en templates igual a las de las apps(buenas   practicas) bodega/bodega/templates/cliente
+10.4.crear el archivo 'cliente.html' en   bodega/bodega/templates/cliente/cliente.html
+10.5.En el 'archivo base.html'agregar {% block xxxx %} {% endblock %}
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}title{% endblock %}x</title>
+  </head>
+  <body>
+  {% block header %}<h1>cabezera<h1>{% endblock %}
+  {% block header %}<h1>sidebar<h1>{% endblock %}
+  {% block content %}<h1>contenido<h1>{% endblock %}
+  {% block footer %}<h1>pie de pagina<h1>{% endblock %}
+  </body>
+  </html>
+10.6.el archivo 'cliente.html' heredara  todo el contenido de base.html   agregar   el siguiente codigo:
+  {%extends 'base/base.html' %} en la primera linea del archivo, el resultado   sera:
+  
+  cabezera
+  sidebar
+  contenido
+  pie de pagina
+
+10.7. para editar  un bloque en el archivo que hereda se coloca:
+  {%extends 'base/base.html' %}
+  {% block header %}<h1>Nueva cabezera<h1>{% endblock %} el resulatdo sera:
+   
+   Nueva cabezera
+   sidebar
+   contenido
+   pie de pagina
+
+10.8. Si desea heredar un archivo 'externo.html' externo en base.html:
+   10.8.1 crear el archivo en bodega/templates/base/externo.html el           cual contiene el siguiente: <h1> archivo externo</h1>
+   10.8.2 luego en el archivo 'base.html' agregar;
+       {%block include base/externo.html %} {% endblock %}:
+       <!DOCTYPE html>
+       <html lang="en">
+       <head>
+       <meta charset="UTF-8">
+       <title>{% block title %}title{% endblock %}</title>
+       </head>
+       <body>
+       {% block header %}
+
+       {%block include 'base/externo.html' %}{% endblock %}
+
+       {% endblock %}
+
+       {% block header %}<h1>sidebar<h1>{% endblock %}
+       {% block content %}<h1>contenido<h1>{% endblock %}
+       {% block footer %}<h1>pie de pagina<h1>{% endblock %}
+        </body>
+        </html>
+   10.8.3 El archivo 'cliente.html' heredara  todo el contenido de              base.html   agregar   el siguiente codigo:
+       {%extends 'base/base.html' %} en la primera linea del archivo,        el resultado   sera:
+  
+       archivo externo
+       sidebar
+       contenido
+       pie de pagina
+
+
+
+**********11. Configurar  archivos estaticos*********
+11.1 Crear la carpta 'static' bodega/bodega/static la cual almacenara      los archivos css, js y otros
+11.2 configurar  para que reconosca la carpeta static
+     ingresar a bodega/bodega/settings.py y agregar: 
+     STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)
+11.3 Agregar al archivo 'base.html' lo siguiente
+   {% load staticfiles %}
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}title{% endblock %}x</title>
+    <link href="{% static 'assets/css/icons/icomoon/styles.css' %}"     rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{% static 'assets/js/plugins/loaders/pace.min.js' %}"></script>
+  </head>
+  <body>
+  {% block header %}<h1>cabezera<h1>{% endblock %}
+  {% block header %}<h1>sidebar<h1>{% endblock %}
+  {% block content %}<h1>contenido<h1>{% endblock %}
+  {% block footer %}<h1>pie de pagina<h1>{% endblock %}
+  </body>
+  </html>
+
+******* 20. Login******************
+20.1 En el archivo bodega/bodega/url  agregar:
+     from django.contrib.auth.views import login
+     url(r'^accounts/login/',login,{'template_name':'index.html'}, name='login'),
+
+20.2 En el archivo bodega/bodega/setting
+     import os
+     from django.core.urlresolvers import reverse_lazy
+     LOGIN_REDIRECT_URL = reverse_lazy('inicio')--->una ves logeado  reenviara al ventana principal
+20.1 En el archivo html bodega/tempaltes/index agregar : 
+     <form method="post">
+          {% csrf_token %}
+          <input type="text" class="form-control"  name="username" >
+          <input type="password" class="form-control"  name="password" >
+          <button type="submit" >Ingresar</i></button>
+          {% if  form.errors    %}
+             {{ form.errors }}                                       
+          {% endif %}
+     </form>
+
+******* 21. Login******************
+21.1 En el archivo bodega/bodega/url  agregar:
+     from django.contrib.auth.views import logout_then_login
+     url(r'^logout/', logout_then_login, name='logout'),
+
+21.2 En el archivo bodega/bodega/setting
+     import os
+     from django.core.urlresolvers import reverse_lazy
+     LOGOUT_REDIRECT_URL = reverse_lazy('login')--->Regresara al login
+
+21.1 En el archivo html bodega/templates/index agregar : 
+     <a href="{% url 'logout' %}">
+
+************** 22. Recuperar cuenta por correo******************
+21.1 En el archivo bodega/bodega/url  agregar:
+
+     from django.contrib.auth.views import password_reset, password_reset_done, password_reset_confirm, password_reset_complete
+
+       url(r'^reset/password_reset', password_reset,
+        {'template_name':'usuario/password_reset_form.html',
+        'email_template_name': 'usuario/password_reset_email.html'},
+        name='password_reset'),
+      url(r'^password_reset_done',password_reset_done,
+        {'template_name': 'usuario/password_reset_done.html'},
+        name='password_reset_done'),
+     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$',password_reset_confirm,
+        {'template_name': 'usuario/password_reset_confirm.html'},
+        name='password_reset_confirm'
+        ),
+     url(r'^reset/done', password_reset_complete,{'template_name': 'usuario/password_reset_complete.html'},
+        name='password_reset_complete'),
+
+21.2 En el archivo bodega/bodega/setting
+
+     EMAIL_USE_TLS = True
+     EMAIL_HOST = 'smtp.gmail.com'
+     EMAIL_PORT = 25
+     EMAIL_HOST_USER = 'juliolavado5@gmail.com'
+     EMAIL_HOST_PASSWORD = 'xxxx'
+     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+21.1 En los archivos html bodega/usuario/... agregar : 
+     *password_reset_form.html:
+    
+       <form method="post">
+          {% csrf_token %}
+          <input type="text" class="form-control"  name="email" >
+          <button type="submit" >Ingresar</i></button>
+          {% if  form.email.errors    %}
+             {{ form.email.errors }}                                       
+          {% endif %}
+     </form>
+
+     *password_reset_done.html:
+    
+       <h5 class="content-group">Te hemos enviado un correo con un enlace para reestablecer tu contraseña </h5>
+       <a href="{% url 'login' %}">Salir</a>
+
+     *password_reset_email.html
+
+       Solicitaste reestablecimiento de contraseña.
+       Click en el siguiente link para crear una nueva contraseña.
+       {% block reset_link %}
+       {{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+       {% endblock %}
+       Tu nombre de usuario es: {{ user.get_username }}
+     
+     *password_reset_confirm.html
+      {% if validlink %}     
+         <form method="post">
+          {% csrf_token %}
+          <input type="password" name="new_password1" >
+          <input type="password" name="new_password2" >
+          <button type="submit" >Ingresar</i></button>
+            {% if  form.new_password1.errors    %}
+              {{ form.new_password1.errors }}
+            {% endif %}
+            {% if  form.new_password2.errors %}
+              {{ form.new_password2.errors }}
+            {% endif %}
+          </form>
+       {% else %]
+             <h5 class="content-group">ENLACE NO VALIDO</h5>
+      {% endif%} 
+      
+     * password_reset_complete.html
+
+       <h5 class="content-group">Su contraseña se reestableció correctamente</h5>
+       <a href="{% url 'login' %}">Salir</a> 
+     
+     
+
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

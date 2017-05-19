@@ -1,0 +1,159 @@
+{% extends  'base/base.html'%}
+{% load staticfiles %}
+{% block rutas %}
+    <script type="text/javascript" src="{% static 'assets/js/plugins/pickers/daterangepicker.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/anytime.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/picker.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/picker.date.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/picker.time.js' %}"></script>
+	<script type="text/javascript" src="{% static 'assets/js/plugins/pickers/pickadate/legacy.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/pages/picker_date.js' %}"></script>
+{% endblock %}
+{% block content-header %}
+				<div class="page-header page-header-default">
+					<div class="page-header-content">
+						<div class="page-title">
+							<h4><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-arrow-left52 position-left"></i> </a><span class="text-semibold">Proveedores</span> / Actualizar de Proveedores</h4>
+						</div>
+
+					</div>
+
+
+				</div>
+{% endblock %}
+{% block content %}
+					<div class="panel panel-flat">
+
+
+						<div class="panel-body">
+							<!--<p class="content-group">Besides navigation, navbar component supports custom content such as: dropdown menus with custom content, full width dropdowns, language selects, forms, tabs, multi level menus, date pickers etc. Everything is adapted to use in different navbar color schemes and sizes. Examples below demonstrate some of these components, other examples related to <code>mega menu</code> can be found <a href="navigation_horizontal_mega.html">on this page</a>.</p>-->
+							<!-- Basic datatable -->
+
+{#                                {% if form.errors %}#}
+{#                                   <div class="alert alert-danger">{{ form.errors }}</div>#}
+{#                                {% endif %}#}
+
+                     <!-- Advanced legend -->
+							<form class="form-horizontal" method="post">
+                                 {% csrf_token %}
+
+
+								<div class="panel panel-flat">
+									<div class="panel-body">
+										<fieldset>
+											<legend class="text-semibold">
+												<i class="icon-diff-added"></i>
+												ACTUALIZAR PROVEEDOR
+												<a class="control-arrow" data-toggle="collapse" data-target="#demo1">
+													<i class="icon-circle-down2"></i>
+												</a>
+											</legend>
+
+											<div class="collapse in" id="demo1">
+{#                                                {{ form.as_p }}#}
+												<div class="form-group">
+													<label class="col-lg-2 control-label">Id:</label>
+													<div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                {{ form.id_proveedor }}
+{#														        <input type="text" class="form-control" placeholder="Documento de Identidad">#}
+                                                            </div>
+                                                            <div class="col-md-2">
+														       <label class="col-lg-3 control-label">RUC:</label>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                {{ form.ruc }}
+{#														        <input type="text" class="form-control" placeholder="Documento de Identidad">#}
+                                                            </div>
+{#                                                            <div class="col-md-4">#}
+{#                                                                <div class="input-group">#}
+{#                                                                    <span class="input-group-addon"><i class="icon-calendar3"></i></span>#}
+{#                                                                    {{ form.fnacimiento }}#}
+{#											                        <input type="text" class="form-control" id="anytime-month-numeric" value="04/06/2017">#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+
+
+                                                        </div>
+                                                    </div>
+												</div>
+
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Razon Social:</label>
+													<div class="col-lg-10">
+														<div class="row">
+														<div class="col-md-12">
+                                                            {{ form.razon_social }}
+{#															<input type="text" placeholder="Nombres" class="form-control">#}
+														</div>
+
+{#														<div class="col-md-6">#}
+{#                                                            {{ form.apellidos }}#}
+{#															<input type="text" placeholder="Apellidos" class="form-control">#}
+{#														</div>#}
+													    </div>
+													</div>
+												</div>
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Nombre Comercial:</label>
+													<div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-md-8">
+                                                                {{ form.nombre }}
+
+                                                            </div>
+                                                            <div class="cold-md-1">
+                                                            <label class="col-lg-1 control-label">Telefono:</label>
+                                                            </div>
+													        <div class="col-md-3">
+                                                                {{ form.telefono }}
+{#														    <input type="text" class="form-control" placeholder="Telefono">#}
+													        </div>
+
+                                                        </div>
+													</div>
+					                			</div>
+
+                                                <div class="form-group">
+													<label class="col-lg-2 control-label">Direccion:</label>
+													<div class="col-lg-10">
+                                                        {{ form.direccion }}
+{#														<input type="text" class="form-control" placeholder="Direccion">#}
+													</div>
+												</div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">Correo:</label>
+													<div class="col-lg-10">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                {{ form.correo }}
+{#														         <input type="text" class="form-control" placeholder="Correo Electronico">#}
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+												</div>
+
+
+											</div>
+										</fieldset>
+
+
+										<div class="text-right">
+											<button type="submit" class="btn btn-primary">Ingresar<i class="icon-arrow-right14 position-right"></i></button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<!-- /a legend -->
+
+
+
+
+
+
+						</div>
+					</div>
+                    {% endblock %}
